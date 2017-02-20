@@ -15,9 +15,7 @@ public class TrainingDummyScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-
 		if (other.tag == "Shibos Attack") {
-			Debug.Log ("fuck yea");
 			GetComponentInChildren<Animator> ().SetTrigger ("spin");
 		}
 	}

@@ -240,8 +240,8 @@ GameObject:
   - component: {fileID: 1183429431}
   - component: {fileID: 1183429430}
   - component: {fileID: 1183429428}
-  - component: {fileID: 1183429432}
   - component: {fileID: 1183429433}
+  - component: {fileID: 1183429429}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -280,6 +280,17 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!114 &1183429429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1183429427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42983792d72c38c4794229972be6e783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &1183429430
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -300,17 +311,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
---- !u!114 &1183429432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1183429427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaa9d5a6de0cc904ebff2a2b015434ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &1183429433
 AudioSource:
   m_ObjectHideFlags: 0

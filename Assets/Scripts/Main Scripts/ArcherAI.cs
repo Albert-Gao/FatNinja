@@ -19,6 +19,8 @@ public class ArcherAI : MonoBehaviour
     public AudioClip[] painSounds;
     public AudioSource audioE;
 
+    
+
     // Blood effect
     public GameObject bloodPrefab;
 
@@ -195,6 +197,7 @@ public class ArcherAI : MonoBehaviour
 
         if (HP <= 0)
         {
+            isDead = true;
             enemy.Stop();
             setToThisAnimation(AnimationParams.isDead);
         }
@@ -202,8 +205,6 @@ public class ArcherAI : MonoBehaviour
         {
             setToThisAnimation(AnimationParams.isHit);
         }
-
-        Debug.Log("asd");
     }
 
     void whenEnemyDead()

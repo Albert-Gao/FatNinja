@@ -1,8 +1,10 @@
 ﻿using InControl;
 using UnityEngine;
+using Fungus;
 using UnityEngine.SceneManagement;
 
 public class SkipMenu : MonoBehaviour {
+    public Fungus.Flowchart flowChart;
     private PlayerAction characterActions;
     // Use this for initialization
     void Start () {
@@ -20,6 +22,10 @@ public class SkipMenu : MonoBehaviour {
 	void Update () {
         if (characterActions.Skip)
         {
+            flowChart.StopAllCoroutines();
+            flowChart.StopAllBlocks();
+            var musicManager = FungusManager.Instance.MusicManager;
+            musicManager.StopMusic();
             Loading.loadLevel("Start Menu");
         }
     }

@@ -332,19 +332,28 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1157782197505970, guid: 8bc86bfd871814709abb388316801fc5,
     type: 2}
   isDead: 0
+  isSit: 0
+  sitTime: 2
   enemyHP: 10
   damage: 3
   enemySpeed: 4
-  runAwayHP: 3
+  runAwayHP: 0
   randomWalkRange: 1
   checkDistance: 2.2
   chanceToAttack: 4
+  lineOfSight: 10
+  chanceToBeStunned: 0.5
   painSounds:
   - {fileID: 8300000, guid: ffad83ce35e6d45f6ac98dbe700eee96, type: 3}
   - {fileID: 8300000, guid: 8e3393b05b74f44c08bcd0a1a61d1b2a, type: 3}
-  audio: {fileID: 82781964402005642}
+  audioE: {fileID: 0}
   bloodPrefab: {fileID: 1098130290637650, guid: 6a16bf338f2c3409bb4e4c16139198f7,
     type: 2}
+  attackSounds:
+  - {fileID: 8300000, guid: e6f477e781de1b34488c69714cad3bad, type: 3}
+  - {fileID: 8300000, guid: aa47a7d7e812b644387fb6bc91c2b424, type: 3}
+  - {fileID: 8300000, guid: 14cd17010442793448f5e4524c40935a, type: 3}
+  audio: {fileID: 82781964402005642}
 --- !u!212 &212484339564673000
 SpriteRenderer:
   m_ObjectHideFlags: 1

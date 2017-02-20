@@ -35,7 +35,6 @@ public class DoorScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		Debug.Log("HIT DOOR WITH OBJECT: " + other.tag);
 		if (other.tag == "Player"){
             loadLevel = true;
 		}

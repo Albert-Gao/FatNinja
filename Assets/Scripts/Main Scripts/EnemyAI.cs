@@ -49,6 +49,11 @@ public class EnemyAI : MonoBehaviour
     public AudioClip[] attackSounds;
     public AudioSource audio;
 
+    
+
+   
+
+
     private enum AnimationParams
     {
         PlayerMoving,
@@ -214,8 +219,12 @@ public class EnemyAI : MonoBehaviour
             //attacking sounds
             if (attackSounds != null && attackSounds.Length > 0 && audio != null)
             {
-                audio.clip = attackSounds[0];
+                int ran = UnityEngine.Random.Range(0, attackSounds.Length);
+                
+                audio.clip = attackSounds[ran];
                 audio.Play();
+
+               
             }
             // Debug.Log("enemy attacks");
 
@@ -352,6 +361,9 @@ public class EnemyAI : MonoBehaviour
             enemy.Stop();
             animator.SetBool("IsEnemyDead", true);
             Destroy(GetComponent<NavMeshAgent2D>());
+
+           
+
             foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);

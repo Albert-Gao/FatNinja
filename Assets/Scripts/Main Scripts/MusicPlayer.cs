@@ -16,7 +16,6 @@ public class MusicPlayer : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("Music player Awake " + GetInstanceID());
         if (INSTANCE != null)
         {
             Destroy(gameObject);

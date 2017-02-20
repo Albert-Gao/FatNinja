@@ -47,6 +47,13 @@ public class CharacterController : MonoBehaviour {
     public AudioClip[] attackSounds;	 
     public AudioSource audio;
 
+    public AudioSource SurasshuSlash;
+    public AudioSource SpinKick;
+    public AudioSource UpperCut;
+
+
+
+
     void Start() {
         characterActions = new PlayerAction();
 
@@ -331,22 +338,32 @@ public class CharacterController : MonoBehaviour {
                         attackString = moveSet[1][0];
                         if (moveSet[1][0] == "HurricaneKick")
                         {
+                           SpinKick.GetComponent<AudioSource>().Play();
+
                             attackDamage = hurricaneKickDamage;
                             TextCanvas.setText("Hurricane Kick");
                             if (Training.getTrainingMode())
                                 Training.training("Hurricane Kick");
-                        } 
+                        }
                         else if (moveSet[1][0] == "UpperCut")
                         {
+                            UpperCut.GetComponent<AudioSource>().Play();
                             attackDamage = upperCutDamage;
                             TextCanvas.setText("Upper Cut");
                             if (Training.getTrainingMode())
                                 Training.training("Upper Cut");
-                        } 
+                        }
                         else if (moveSet[1][0] == "SurasshuSlash")
                         {
+
+                          
+                            SurasshuSlash.GetComponent<AudioSource>().Play();
+
                             attackDamage = surasshuSlashDamage;
                             TextCanvas.setText("Surasshu Slash");
+                            
+                           
+
                             if (Training.getTrainingMode())
                                 Training.training("Surasshu Slash");
                         }

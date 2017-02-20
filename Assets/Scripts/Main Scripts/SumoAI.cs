@@ -42,10 +42,10 @@ public class SumoAI : MonoBehaviour
         "Stay still so I can kill you",
         "You so skinny your mom enjoyed your birth",
         "I break you, you skinny twig",
-        "you hoola-hoop with Fruit Loops",
-        "Run Forrest, Run",
         
-        "At last a work-out"
+        "you can't escape me",
+        
+        "this is to much exercise"
         
     };
     private enum AnimationParams

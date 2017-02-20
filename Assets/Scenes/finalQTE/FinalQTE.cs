@@ -97,7 +97,7 @@ public class FinalQTE : Command
         yield return new WaitForSeconds(DelayTimer);
 
         // This line below is only for Debug Purposes
-        Debug.Log(QTEButton.ToString());
+        //Debug.Log(QTEButton.ToString());
 
         // Shrink the QTE Button
         StartCoroutine(ScaleOverTime(CountTimer));
