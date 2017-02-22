@@ -12,13 +12,7 @@
     <div class="template-wrap clear">
       <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="960px"></canvas>
       <br>
-      <div class="logo"><p>Arrow keys move, [Z] punch, [X] kick, [Esc] pause. We recommend a game controller over a keyboard.</p>
-      </div>
-      
-      <br>
-      
-      <div class="logo"><p>The game is about 100MB, so it may take a while to load. If you experience a memory error, try restarting your browser. For a hassle free experience try the standalone here: <a href="shodo_windows.zip">Download for Windows</a></p></div>
-
+      <div class="logo"></div>
       <div class="fullscreen"><img src="TemplateData/fullscreen.png" width="38" height="38" alt="Fullscreen" title="Fullscreen" onclick="SetFullscreen(1);" /></div>
       <div class="title">Shodo</div>
     </div>
@@ -29,12 +23,13 @@
     compatibilitycheck: null,
     backgroundColor: "#222C36",
     splashStyle: "Light",
-    dataUrl: "Release/shodo.data",
-    codeUrl: "Release/shodo.js",
-    asmUrl: "Release/shodo.asm.js",
-    memUrl: "Release/shodo.mem",
+    dataUrl: "Release/Builds.data",
+    codeUrl: "Release/Builds.js",
+    asmUrl: "Release/Builds.asm.js",
+    memUrl: "Release/Builds.mem",
   };
 </script>
 <script src="Release/UnityLoader.js"></script>
+
   </body>
 </html>
