@@ -87,14 +87,6 @@ namespace Fungus
         protected StringSubstituter stringSubstituer;
 
         #if UNITY_5_4_OR_NEWER
-        protected virtual void Awake()
-        {
-            CheckEventSystem();
-
-            UnityEngine.SceneManagement.SceneManager.activeSceneChanged += (A, B) => {
-                LevelWasLoaded();
-            };
-        }
         #else
         protected virtual void OnLevelWasLoaded(int level) 
         {
@@ -137,16 +129,38 @@ namespace Fungus
             eventSystemPresent = true;
         }
 
+        private void SceneManager_activeSceneChanged(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.Scene arg1)
+        {
+            LevelWasLoaded();
+        }
+
         protected virtual void OnEnable()
         {
             if (!cachedFlowcharts.Contains(this))
             {
                 cachedFlowcharts.Add(this);
+                //TODO these pairs could be replaced by something static that manages all active flowcharts
+                #if UNITY_5_4_OR_NEWER
+                UnityEngine.SceneManagement.SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
+                #endif
             }
 
             CheckItemIds();
             CleanupComponents();
             UpdateVersion();
+
+            StringSubstituter.RegisterHandler(this);   
+        }
+
+        protected virtual void OnDisable()
+        {
+            cachedFlowcharts.Remove(this);
+
+            #if UNITY_5_4_OR_NEWER
+            UnityEngine.SceneManagement.SceneManager.activeSceneChanged -= SceneManager_activeSceneChanged;
+            #endif
+
+            StringSubstituter.UnregisterHandler(this);   
         }
 
         protected virtual void UpdateVersion()
@@ -170,11 +184,6 @@ namespace Fungus
             }
 
             version = FungusConstants.CurrentVersion;
-        }
-
-        protected virtual void OnDisable()
-        {
-            cachedFlowcharts.Remove(this);
         }
 
         protected virtual void CheckItemIds()
@@ -489,6 +498,25 @@ namespace Fungus
             if (!ExecuteBlock(block))
             {
                 Debug.LogWarning("Block " + blockName  + "failed to execute");
+            }
+        }
+            
+        /// <summary>
+        /// Stops an executing Block in the Flowchart.
+        /// </summary>
+        public virtual void StopBlock(string blockName)
+        {
+            var block = FindBlock(blockName);
+
+            if (block == null)
+            {
+                Debug.LogError("Block " + blockName  + "does not exist");
+                return;
+            }
+
+            if (block.IsExecuting())
+            {
+                block.Stop();
             }
         }
 
@@ -1162,7 +1190,6 @@ namespace Fungus
             if (stringSubstituer == null)
             {
                 stringSubstituer = new StringSubstituter();
-                stringSubstituer.CacheSubstitutionHandlers();
             }
 
             // Use the string builder from StringSubstituter for efficiency.

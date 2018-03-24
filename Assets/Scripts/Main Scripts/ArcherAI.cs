@@ -79,7 +79,7 @@ public class ArcherAI : MonoBehaviour
 
         if (isFirstMeet)
         {
-            enemy.Stop();
+            enemy.isStopped = true;
             setToThisAnimation(AnimationParams.isIdle);
             return;
         }
@@ -111,7 +111,7 @@ public class ArcherAI : MonoBehaviour
         else if (currentBaseState.fullPathHash.Equals(walkState))
         {
             hasAttacked = false;
-            enemy.Resume();
+            enemy.isStopped = false;
 
             if (enemy.remainingDistance <= 0.5f)
             {
@@ -128,7 +128,7 @@ public class ArcherAI : MonoBehaviour
                 RandomlyChooseAttackOrMove(chanceToAttack / 2, () =>
                 {
                     // should walk back
-                    enemy.Resume();
+					enemy.isStopped = false;
                     enemy.ResetPath();
                     enemy.destination = GetFurthestPointAfterPlayerToEnemy();
                 });
@@ -177,7 +177,7 @@ public class ArcherAI : MonoBehaviour
     {
         if (!hasAttacked)
         {
-            enemy.Stop();
+			enemy.isStopped = true;
             lastHitTime = Time.time;
             fireArrow();
             hasAttacked = true;
@@ -198,7 +198,7 @@ public class ArcherAI : MonoBehaviour
         if (HP <= 0)
         {
             isDead = true;
-            enemy.Stop();
+			enemy.isStopped = true;
             setToThisAnimation(AnimationParams.isDead);
         }
         else
@@ -210,7 +210,7 @@ public class ArcherAI : MonoBehaviour
     void whenEnemyDead()
     {
         this.tag = "DeadEnemy";
-        enemy.Stop();
+		enemy.isStopped = true;
         isDead = true;
         setToThisAnimation(AnimationParams.isDead);
 

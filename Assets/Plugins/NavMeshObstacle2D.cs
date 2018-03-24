@@ -2,7 +2,8 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NavMeshObstacle2D : MonoBehaviour {
+public class NavMeshObstacle2D : MonoBehaviour
+{
     // NavMeshObstacle properties
     public NavMeshObstacleShape shape = NavMeshObstacleShape.Box;
     public Vector2 center;
@@ -13,7 +14,8 @@ public class NavMeshObstacle2D : MonoBehaviour {
     NavMeshObstacle obst;
 
     // monobehaviour ///////////////////////////////////////////////////////////
-    void Awake() {
+    void Awake()
+    {
         // create projection
         var go = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
         go.name = "NAVIGATION2D_OBSTACLE";
@@ -26,7 +28,8 @@ public class NavMeshObstacle2D : MonoBehaviour {
         Destroy(obst.GetComponent<MeshRenderer>());
     }
 
-    void Update() {
+    void Update()
+    {
         // copy properties to projection all the time
         // (in case they are modified after creating it)
         obst.carving = carve;
@@ -41,35 +44,41 @@ public class NavMeshObstacle2D : MonoBehaviour {
         obst.transform.position = NavMeshUtils2D.ProjectTo3D(transform.position);
     }
         
-    void OnDestroy() {
+    void OnDestroy()
+    {
         // destroy projection if not destroyed yet
         if (obst) Destroy(obst.gameObject);
     }
     
-    void OnEnable() {
+    void OnEnable()
+    {
         if (obst) obst.enabled = true;
     }
         
-    void OnDisable() {
+    void OnDisable()
+    {
         if (obst) obst.enabled = false;
     }
 
     // radius gizmo (gizmos.matrix for correct rotation)
-    void OnDrawGizmosSelected() {
+    void OnDrawGizmosSelected()
+    {
         Gizmos.color = Color.green;
         Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.localRotation, transform.localScale);
-        Gizmos.DrawWireCube(Vector3.zero, size);
+        Gizmos.DrawWireCube(center, size);
     }
 
     // validation
-    void OnValidate() {
+    void OnValidate()
+    {
         // force shape to box for now because we would need a separate Editor
         // GUI script to switch between size and radius otherwise
         shape = NavMeshObstacleShape.Box;
     }
     
     // NavMeshAgent proxies ////////////////////////////////////////////////////
-    public Vector2 velocity {
+    public Vector2 velocity
+    {
         get { return NavMeshUtils2D.ProjectTo2D(obst.velocity); }
         // set: is a bad idea
     }

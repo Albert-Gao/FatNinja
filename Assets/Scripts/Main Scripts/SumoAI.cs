@@ -85,7 +85,7 @@ public class SumoAI : MonoBehaviour
             hasAttacked = false;
             if (isChasing)
             {
-                enemy.Resume();
+				enemy.isStopped = false;
                 setEnemyDirection();
                 isChasing = false;
             }
@@ -101,7 +101,7 @@ public class SumoAI : MonoBehaviour
             if (!hasAttacked)
             {
                 hasAttacked = true;
-                enemy.Stop();
+				enemy.isStopped = true;
                 float pDistance = Vector2.Distance(transform.position, player.position);
 
 
@@ -162,7 +162,7 @@ public class SumoAI : MonoBehaviour
                 //say something
                 StartCoroutine(SaySomethingFirstMeet());
                 isFirstTimeMeet = false;
-                enemy.Stop();
+				enemy.isStopped = true;
                 setToThisAnimation(AnimationParams.isRoar);
                 StartCoroutine(TimePause(timeBeforeChase * 1.5f));
             }

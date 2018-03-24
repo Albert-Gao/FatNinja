@@ -1,4 +1,6 @@
-﻿Shader "Custom/AdditiveParticles" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/AdditiveParticles" {
  Properties {
      _TintColor ("Tint Color", Color) = (0.5,0.5,0.5,0.5)
      _MainTex ("Particle Texture", 2D) = "white" {}
@@ -52,7 +54,7 @@
              v2f vert (appdata_t v)
              {
                  v2f o;
-                 o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+                 o.vertex = UnityObjectToClipPos(v.vertex);
                  o.color = v.color;
                  o.texcoord = TRANSFORM_TEX(v.texcoord,_MainTex);
                  return o;

@@ -213,7 +213,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (!BeenHit)
         {
-            enemy.Stop();
+            enemy.isStopped = true;
             SetEnemyAnimation(AnimationParams.PlayerKicking);
 
             //attacking sounds
@@ -333,7 +333,7 @@ public class EnemyAI : MonoBehaviour
         }
         else if (randomNumber > chanceToAttack && randomNumber <= 10)
         { //enemy will moveBack
-            enemy.Resume();
+            enemy.isStopped = false;
             SetEnemyAnimation(AnimationParams.EnemyWalking);
             enemy.destination = GetRandomNearPlayerPosition();
 
@@ -358,7 +358,7 @@ public class EnemyAI : MonoBehaviour
         {
             isDead = true;
             this.tag = "DeadEnemy";
-            enemy.Stop();
+            enemy.isStopped = true;
             animator.SetBool("IsEnemyDead", true);
             Destroy(GetComponent<NavMeshAgent2D>());
 
@@ -452,7 +452,7 @@ public class EnemyAI : MonoBehaviour
             if (enemyHP <= runAwayHP)
             {
                 //makes enemy run away
-                enemy.Resume();
+                enemy.isStopped = false;
                 SetEnemyAnimation(AnimationParams.PlayerMoving);
                 enemy.speed = 0.6f * enemySpeed;
                 enemy.destination = GetFurthestPointAfterPlayerToEnemy();
@@ -467,7 +467,7 @@ public class EnemyAI : MonoBehaviour
 
             if (remainingDistance > Mathf.Min(lineOfSight, 10))
             {
-                enemy.Stop();
+                enemy.isStopped = true;
                 animator.SetBool("PlayerMoving", false);
                 animator.SetBool("PlayerKicking", false);
                 animator.SetBool("EnemyWalking", false);
@@ -477,7 +477,7 @@ public class EnemyAI : MonoBehaviour
 
             if (remainingDistance > 0 && remainingDistance < lineOfSight)
             {
-                enemy.Resume();
+                enemy.isStopped = false;
                 if (remainingDistance > checkDistance)
                 {
                     enemy.speed = enemySpeed;
@@ -485,7 +485,7 @@ public class EnemyAI : MonoBehaviour
                 }
                 else if (remainingDistance <= checkDistance)
                 {
-                    enemy.Resume();
+					enemy.isStopped = false;
                     SetEnemyAnimation(AnimationParams.EnemyWalking);
                 }
 
@@ -554,7 +554,7 @@ public class EnemyAI : MonoBehaviour
             caughtPlayer = false;
             playerCollider = null;
             BeenHit = false;
-            enemy.Resume();
+			enemy.isStopped = false;
         }
     }
 

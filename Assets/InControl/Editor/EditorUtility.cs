@@ -14,7 +14,7 @@ namespace InControl
 			#if UNITY_5 && !(UNITY_5_0_0 || UNITY_5_0_1)
 			return AssetDatabase.LoadAssetAtPath<T>( assetPath );
 			#else
-			return Resources.LoadAssetAtPath<T>( assetPath );
+			return AssetDatabase.LoadAssetAtPath<T>( assetPath );
 			#endif
 		}
 	}

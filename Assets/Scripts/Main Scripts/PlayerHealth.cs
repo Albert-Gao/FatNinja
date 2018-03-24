@@ -126,7 +126,7 @@ public class PlayerHealth : MonoBehaviour {
                 
                 NavMeshAgent2D e = go.gameObject.GetComponent<NavMeshAgent2D>();
                 if (e) {
-                    e.Stop();
+					e.isStopped = true;
                 }
 
                 SpriteRenderer sr = go.GetComponent<SpriteRenderer>();

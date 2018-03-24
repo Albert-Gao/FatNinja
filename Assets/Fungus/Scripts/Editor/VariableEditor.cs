@@ -86,7 +86,7 @@ namespace Fungus.EditorUtils
                 }
             }
 
-            Flowchart[] fsList = GameObject.FindObjectsOfType<Flowchart>();
+            List<Flowchart> fsList = Flowchart.CachedFlowcharts;
             foreach (Flowchart fs in fsList)
             {
                 if (fs == flowchart)
@@ -348,5 +348,9 @@ namespace Fungus.EditorUtils
 
     [CustomPropertyDrawer (typeof(AudioSourceData))]
     public class AudioSourceDrawer : VariableDataDrawer<AudioSourceVariable>
-    {}
+    { }
+
+    [CustomPropertyDrawer(typeof(Rigidbody2DData))]
+    public class Rigidbody2DDataDrawer : VariableDataDrawer<Rigidbody2DVariable>
+    { }
 }
